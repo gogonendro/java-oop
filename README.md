@@ -70,7 +70,21 @@ Programs demonstrating different forms of polymorphism in Java
 
 Programs demonstrating abstract classes and abstract methods
 
-*Programs to be added*
+### Abstract Classes and Methods
+
+1. **Abstract Keyword** — demonstrates the use of abstract classes and abstract methods, including concrete methods within an abstract class.
+2. **Multiple Subclasses** — demonstrates how multiple subclasses implement abstract methods differently while inheriting common concrete methods.
+
+### Constructors
+
+3. **Constructor in Abstract Class** — demonstrates constructor execution in an abstract superclass when a subclass object is created.
+4. **Multiple Abstract Methods** — demonstrates how a concrete subclass must implement multiple abstract methods declared in an abstract superclass.
+5. **Parameterized Constructor** — demonstrates parameterized constructors in abstract classes and constructor chaining using `super(...)`.
+
+### Abstraction and Polymorphism
+
+6. **Abstract Class and Polymorphism** — demonstrates runtime polymorphism using an abstract superclass reference and different subclass objects.
+7. **Abstraction Recap** — combines abstract classes, multiple abstract methods, concrete methods, parameterized constructors, `super(...)`, multiple subclasses, abstract-class references, and runtime polymorphism.
 
 ---
 
@@ -119,6 +133,20 @@ Programs demonstrating encapsulation and controlled access to class members
 - Upcasting
 - Downcasting
 - `instanceof` operator
+
+### Abstraction
+
+- Abstract classes
+- Abstract methods
+- Concrete methods in abstract classes
+- Multiple abstract methods
+- Multiple subclasses
+- Constructors in abstract classes
+- Parameterized constructors
+- `super(...)` with abstract classes
+- Constructor chaining
+- Abstract-class references
+- Abstraction with runtime polymorphism
 
 ### OOP Concepts
 
