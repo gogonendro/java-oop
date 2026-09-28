@@ -12,6 +12,7 @@ interface Scannable {
 
 // a class can implement multiple interfaces
 class MultiFunctionPrinter implements Printable, Scannable {
+
     // method from 'Printable' interface
     public void print() {
         System.out.println("Document is being printed... Done!");
