@@ -92,7 +92,27 @@ Programs demonstrating abstract classes and abstract methods
 
 Programs demonstrating the use and implementation of interfaces in Java
 
-*Programs to be added*
+### Basic Interfaces
+
+1. **Basic Interface** — demonstrates the declaration of an interface, implementation using `implements`, and implementation of interface methods.
+2. **Multiple Interfaces** — demonstrates how a class can implement multiple interfaces and provide implementations for methods from each interface.
+3. **Interface Reference & Polymorphism** — demonstrates runtime polymorphism using an interface reference and different implementing class objects.
+
+### Interface Variables and Methods
+
+4. **Interface Variables** — demonstrates interface variables, which are implicitly `public static final` constants.
+5. **Default Methods** — demonstrates default methods in interfaces, which provide a ready-made implementation for implementing classes.
+6. **Default Method Override** — demonstrates how an implementing class can override a default method provided by an interface.
+7. **Static Methods** — demonstrates static methods in interfaces and how they are accessed using the interface name.
+
+### Interface Inheritance
+
+8. **Interface Inheritance** — demonstrates one interface inheriting from another interface using `extends`.
+9. **Multiple Interface Inheritance** — demonstrates how an interface can extend multiple interfaces and combine their contracts.
+
+### Recap
+
+10. **Interfaces Recap** — combines interface methods, default methods, multiple interface inheritance, and implementation of inherited interface methods.
 
 ---
 
@@ -147,6 +167,22 @@ Programs demonstrating encapsulation and controlled access to class members
 - Constructor chaining
 - Abstract-class references
 - Abstraction with runtime polymorphism
+
+### Interfaces
+
+- Interfaces
+- `implements` keyword
+- Interface methods
+- Interface constants (`public static final`)
+- Interface references
+- Runtime polymorphism
+- Multiple interface implementation
+- Default methods
+- Overriding default methods
+- Static methods in interfaces
+- Interface inheritance
+- Multiple interface inheritance
+- Combining multiple interface contracts
 
 ### OOP Concepts
 
