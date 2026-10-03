@@ -120,7 +120,27 @@ Programs demonstrating the use and implementation of interfaces in Java
 
 Programs demonstrating encapsulation and controlled access to class members
 
-*Programs to be added*
+### Basic Encapsulation
+
+1. **Basic Encapsulation** — demonstrates encapsulation using `private` instance variables and controlled access through methods.
+
+### Getters and Setters
+
+2. **Getters and Setters** — demonstrates getter and setter methods for reading and modifying private instance variables.
+3. **Validation Using Setters** — demonstrates validating data through a setter before modifying a private variable.
+4. **`this` with Encapsulation** — demonstrates the use of the `this` keyword to distinguish instance variables from parameters with the same name.
+
+### Constructors and Encapsulation
+
+5. **Constructor + Encapsulation** — demonstrates initializing private instance variables through a parameterized constructor instead of a setter.
+6. **Validation in Constructor** — demonstrates validating data during object creation and maintaining a validity status for the object.
+7. **Read-Only Data** — demonstrates read-only access using a private variable, a constructor for initialization, and a getter without a setter.
+8. **Write-Only Data** — demonstrates write-only access using a private variable and a setter without a getter.
+
+### `final` Variables
+
+9. **`final` Variables** — demonstrates the use of a private `final` variable that can be initialized once and cannot be reassigned.
+10. **Encapsulation Recap** — combines private members, constructors, `this`, `final` variables, getters, validation, and controlled modification of object data.
 
 ---
 
@@ -183,6 +203,23 @@ Programs demonstrating encapsulation and controlled access to class members
 - Interface inheritance
 - Multiple interface inheritance
 - Combining multiple interface contracts
+
+### Encapsulation
+
+- Encapsulation
+- `private` instance variables
+- Getters
+- Setters
+- Data validation
+- Boolean validity flags
+- `this` keyword
+- Parameterized constructors
+- Constructor-based initialization
+- Read-only data
+- Write-only data
+- `final` variables
+- Controlled access to object state
+- Controlled modification of object data
 
 ### OOP Concepts
 
