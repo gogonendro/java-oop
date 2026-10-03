@@ -19,29 +19,29 @@ class MyBank {
             System.out.println("ERROR: Invalid account number");
             c1 = false;
         }
-
-        /*
-         * if (balance >= 0) {
-         * this.balance = balance;
-         * c2 = true;
-         * } else {
-         * System.out.
-         * println("ERROR: Initial balance must be greater than or equal to 0");
-         * c2 = false;
-         * }
-         */
     }
 
     // method to deposit money into the account
-    void deposit(int balance) {
-        if (balance >= 0) {
-            this.balance += balance;
+    void deposit(int depo) {
+        if (depo >= 0) {
+            balance += depo;
             System.out.println("Update Successful!");
-            // c2 = true;
         } else {
             System.out.println("Deposit cannot be negative. Try again!");
-            // c2 = false;
         }
+    }
+
+    // method to withdraw money from the account
+    void withdraw(int wd) {
+        if (wd < 0) {
+            System.out.println("Withdraw cannot be negative. Try again!");
+        } else if (wd > balance) {
+            System.out.println("Insufficient Balance.");
+        } else {
+            balance -= wd;
+            System.out.println("Withdraw Successful!");
+        }
+
     }
 
     int getAccNum() {
@@ -55,12 +55,6 @@ class MyBank {
     boolean getCheck1() {
         return c1;
     }
-
-    /*
-     * boolean getCheck2() {
-     * return c2;
-     * }
-     */
 
     String getAccHold() {
         return accHold;
@@ -80,7 +74,7 @@ public class EncapsulationRecap {
             System.out.println("Account Holder: " + ba.getAccHold() + "\nAccount Number: " + ba.getAccNum());
 
             do {
-                System.out.println("\n----Bank Menu----\n1. Deposit\n2. Check Balance\n3. Exit");
+                System.out.println("\n----Bank Menu----\n1. Deposit\n2. Withdraw\n3. Check Balance\n4. Exit");
                 ch = sc.nextInt();
 
                 switch (ch) {
@@ -88,19 +82,20 @@ public class EncapsulationRecap {
                         // updates balance
                         System.out.print("Enter amount: ");
                         ba.deposit(sc.nextInt());
-                        /*
-                         * if (ba.getCheck2()) {
-                         * System.out.println("Update Successful!");
-                         * }
-                         */
                         break;
 
                     case 2:
+                        // withdraws money
+                        System.out.print("Enter amount: ");
+                        ba.withdraw(sc.nextInt());
+                        break;
+
+                    case 3:
                         // checks balance
                         System.out.println("Current Balance: Rs. " + ba.getBal());
                         break;
 
-                    case 3:
+                    case 4:
                         // exits program
                         System.out.println("Terminated");
                         break;
@@ -109,7 +104,7 @@ public class EncapsulationRecap {
                         System.out.println("Invalid");
                         break;
                 }
-            } while (ch != 3);
+            } while (ch != 4);
         }
 
         sc.close();
