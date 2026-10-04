@@ -53,7 +53,7 @@ class Bike extends Vehicle {
     }
 }
 
-public class VehicleManage {
+public class VehicleManagement {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         Vehicle v; // reference to super
