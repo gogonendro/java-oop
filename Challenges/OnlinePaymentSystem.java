@@ -3,11 +3,10 @@ package Challenges;
 import java.util.*;
 
 abstract class Payment {
+
     // instance variables
     private final String id;
     private int amount;
-    private boolean amtCheck;
-    private boolean idCheck;
 
     // parameterized constructor to initialize variables
     Payment(String id, int amount) {
@@ -42,8 +41,8 @@ class UPIPayment extends Payment implements Receipt {
     }
 
     public void generateReceipt() {
-        System.out.println("\n---------- RECEIPT ----------\nTransaction ID: " + super.getId() + "\nAmount: Rs. "
-                + super.getAmount() + "\nPayment Mode: UPI\n-----------------------------\n");
+        System.out.println("\n---------- RECEIPT ----------\nTransaction ID: " + getId() + "\nAmount: Rs. "
+                + getAmount() + "\nPayment Mode: UPI\n-----------------------------\n");
     }
 }
 
@@ -57,8 +56,8 @@ class CardPayment extends Payment implements Receipt {
     }
 
     public void generateReceipt() {
-        System.out.println("\n---------- RECEIPT ----------\nTransaction ID: " + super.getId() + "\nAmount: Rs. "
-                + super.getAmount() + "\nPayment Mode: Card\n-----------------------------\n");
+        System.out.println("\n---------- RECEIPT ----------\nTransaction ID: " + getId() + "\nAmount: Rs. "
+                + getAmount() + "\nPayment Mode: Card\n-----------------------------\n");
     }
 }
 
