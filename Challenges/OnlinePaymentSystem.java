@@ -123,7 +123,7 @@ public class OnlinePaymentSystem {
             switch (choice) {
                 // case for UPI Payment
                 case 1:
-                    id = getValidId(sc); // get ID from via method
+                    id = getValidId(sc); // get ID via method
                     // if user cancels
                     if (id == null) {
                         break; // break into menu
