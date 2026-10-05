@@ -6,7 +6,7 @@ abstract class Payment {
 
     // instance variables
     private final String id;
-    private int amount;
+    private final int amount;
 
     // parameterized constructor to initialize variables
     Payment(String id, int amount) {
@@ -41,8 +41,8 @@ class UPIPayment extends Payment implements Receipt {
     }
 
     public void generateReceipt() {
-        System.out.println("\n---------- RECEIPT ----------\nTransaction ID: " + getId() + "\nAmount: Rs. "
-                + getAmount() + "\nPayment Mode: UPI\n-----------------------------\n");
+        System.out.println("\n---------- RECEIPT ----------\nTransaction ID: " + getId() + "\nAmount: "
+                + getAmount() + " INR" + "\nPayment Mode: UPI\n-----------------------------\n");
     }
 }
 
@@ -56,22 +56,64 @@ class CardPayment extends Payment implements Receipt {
     }
 
     public void generateReceipt() {
-        System.out.println("\n---------- RECEIPT ----------\nTransaction ID: " + getId() + "\nAmount: Rs. "
-                + getAmount() + "\nPayment Mode: Card\n-----------------------------\n");
+        System.out.println("\n---------- RECEIPT ----------\nTransaction ID: " + getId() + "\nAmount: "
+                + getAmount() + " INR" + "\nPayment Mode: Card\n-----------------------------\n");
     }
 }
 
 public class OnlinePaymentSystem {
+
+    // method to check validity of entered ID
+    static String getValidId(Scanner sc) {
+        System.out.print("\nEnter Transaction ID (or 'c' to cancel): ");
+        String id = sc.next(); // stores the id
+        do {
+            if (id.equalsIgnoreCase("c")) {
+                System.out.println("Payment Canceled!\n");
+                return null; // return nothing if canceled
+            }
+            id = id.toUpperCase(); // convert to uppercase
+            // check for valid expected id format using regex
+            if (id.matches("[A-Z]{2}[0-9]{3}[A-Z]")) {
+                return id; // if format matches, return id
+            } else {
+                System.out.print(
+                        // print invalid message, and ask to try again
+                        "Invalid ID. ID Format (letter)(letter)(digit)(digit)(digit)(letter).\nTry again (or enter 'c' to cancel): ");
+                id = sc.next();
+            }
+        } while (true);
+    }
+
+    // method to check for valid amount
+    static int getValidAmount(Scanner sc) {
+        System.out.print("\nEnter Amount in Indian Rupees (or '0' to cancel): ");
+        int amount = sc.nextInt(); // stores the entered amount
+
+        do {
+            if (amount == 0) {
+                System.out.println("Payment Canceled!\n");
+                return 0; // return nothing if canceled
+            } else if (amount > 0) {
+                return amount; // return valid amount
+            } else {
+                // print invalid message and ask to try again
+                System.out.print("Amount must be greater than 0.\nTry again (or enter '0' to cancel): ");
+                amount = sc.nextInt();
+            }
+        } while (true);
+
+    }
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         Payment p;
         Receipt r;
         int choice;
 
-        String idValid;
-        int amtValid;
-        boolean idCancel;
-        boolean amtCancel;
+        String id;
+        int amount;
+
         do {
 
             System.out
@@ -79,135 +121,59 @@ public class OnlinePaymentSystem {
             choice = sc.nextInt();
 
             switch (choice) {
+                // case for UPI Payment
                 case 1:
-                    System.out.print("Enter Transaction ID (or 'c' to cancel): ");
-                    idValid = sc.next(); // stores valid id for transaction
-                    idCancel = false; // set cancel checker to false
-
-                    do {
-                        // checks if user entered 'c'
-                        if (idValid.equalsIgnoreCase("c")) {
-                            System.out.println("Canceled!\n"); // then declare canceled
-                            idCancel = true; // cancel is set to true
-                            break; // break into Payment Menu
-                        }
-
-                        idValid = idValid.toUpperCase(); // convert entered id to uppercase
-
-                        // check validity using regex
-                        if (idValid.matches("[A-Z]{2}[0-9]{3}[A-Z]")) {
-                            break; // accept the id and break from loop if valid
-                        } else {
-                            // else ask user to try again or cancel
-                            System.out.print("Invalid ID. Try again (or 'c' to cancel): ");
-                            idValid = sc.next();
-                        }
-                    } while (true); // do all of this until id is valid or canceled
-
-                    if (idCancel) {
-                        break; // break into menu if canceled
-                    } else {
-                        // else if the id is valid, ask for amount
-                        System.out.print("Enter Amount (or '0' to cancel): ");
-                        amtValid = sc.nextInt();
-                        amtCancel = false;
-
-                        do {
-                            if (amtValid == 0) {
-                                System.out.println("Canceled!\n");
-                                System.out.println();
-                                amtCancel = true;
-                                break;
-                            } else if (amtValid > 0) {
-                                break;
-                            } else {
-                                System.out.print(
-                                        "Amount must be greater than 0 (zero). Try again (or enter '0' to cancel): ");
-                                amtValid = sc.nextInt();
-                            }
-                        } while (true);
-
-                        if (amtCancel) {
-                            break;
-                        }
-
-                        // if this segment is reached, then id and amount both are valid
-                        UPIPayment upi = new UPIPayment(idValid, amtValid);
-                        p = upi; // superclass reference for all the tasks
-                        r = upi; // interface reference for receipt generation
-                        System.out.println();
-                        p.processPayment();
-                        r.generateReceipt();
-                        break;
+                    id = getValidId(sc); // get ID from via method
+                    // if user cancels
+                    if (id == null) {
+                        break; // break into menu
                     }
+
+                    amount = getValidAmount(sc); // get to this only if user doesn't cancel and enters valid id
+
+                    // if user cancels
+                    if (amount == 0) {
+                        break; // break into menu
+                    }
+
+                    UPIPayment upi = new UPIPayment(id, amount);
+                    p = upi; // Payment reference for processing payment
+                    r = upi; // Receipt reference to generate receipt
+                    System.out.println();
+                    p.processPayment();
+                    r.generateReceipt();
+
+                    break;
 
                 case 2:
-                    System.out.print("Enter Transaction ID (or 'c' to cancel): ");
-                    idValid = sc.next(); // stores valid id for transaction
-                    idCancel = false; // set cancel checker to false
-
-                    do {
-                        // checks if user entered 'c'
-                        if (idValid.equalsIgnoreCase("c")) {
-                            System.out.println("Canceled!\n"); // then declare canceled
-                            idCancel = true; // cancel is set to true
-                            break; // break into Payment Menu
-                        }
-
-                        idValid = idValid.toUpperCase(); // convert entered id to uppercase
-
-                        // check validity using regex
-                        if (idValid.matches("[A-Z]{2}[0-9]{3}[A-Z]")) {
-                            break; // accept the id and break from loop if valid
-                        } else {
-                            // else ask user to try again or cancel
-                            System.out.print("Invalid ID. Try again (or 'c' to cancel): ");
-                            idValid = sc.next();
-                        }
-                    } while (true); // do all of this until id is valid or canceled
-
-                    if (idCancel) {
-                        break; // break into menu if canceled
-                    } else {
-                        // else if the id is valid, ask for amount
-                        System.out.print("Enter Amount (or '0' to cancel): ");
-                        amtValid = sc.nextInt();
-                        amtCancel = false;
-
-                        do {
-                            if (amtValid == 0) {
-                                System.out.println("Canceled!\n");
-                                amtCancel = true;
-                                break;
-                            } else if (amtValid > 0) {
-                                break;
-                            } else {
-                                System.out.print(
-                                        "Amount must be greater than 0 (zero). Try again (or enter '0' to cancel): ");
-                                amtValid = sc.nextInt();
-                            }
-                        } while (true);
-
-                        if (amtCancel) {
-                            break;
-                        }
-
-                        // if this segment is reached, then id and amount both are valid
-                        CardPayment card = new CardPayment(idValid, amtValid);
-                        p = card; // superclass reference for all the tasks
-                        r = card; // interface reference for receipt generation
-                        System.out.println();
-                        p.processPayment();
-                        r.generateReceipt();
-                        break;
+                    id = getValidId(sc); // get ID from via method
+                    // if user cancels
+                    if (id == null) {
+                        break; // break into menu
                     }
 
+                    amount = getValidAmount(sc); // get to this only if user doesn't cancel and enters valid id
+
+                    // if user cancels
+                    if (amount == 0) {
+                        break; // break into menu
+                    }
+
+                    CardPayment card = new CardPayment(id, amount);
+                    p = card; // Payment reference for processing payment
+                    r = card; // Receipt reference to generate receipt
+                    System.out.println();
+                    p.processPayment();
+                    r.generateReceipt();
+
+                    break;
+
                 case 3:
-                    System.out.println("Thank you. Visit again!\nTerminated.\n");
+                    System.out.println("\nThank you. Visit again!\nTerminated.\n");
                     break;
 
                 default:
-                    System.out.println("Invalid. Try again!");
+                    System.out.println("\nInvalid. Try again!");
                     break;
             }
         } while (choice != 3);
