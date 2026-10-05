@@ -145,6 +145,7 @@ public class OnlinePaymentSystem {
 
                     break;
 
+                // case for card Payment
                 case 2:
                     id = getValidId(sc); // get ID from via method
                     // if user cancels
